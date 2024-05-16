@@ -16,6 +16,15 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTabbedPane;
+import javax.swing.JTree;
+import javax.swing.JSlider;
+import javax.swing.JSeparator;
+import javax.swing.JProgressBar;
+import javax.swing.JList;
+import javax.swing.JSpinner;
+import javax.swing.JEditorPane;
+import javax.swing.JPasswordField;
 
 public class VentanaConEstado {
 
@@ -100,21 +109,21 @@ public class VentanaConEstado {
 			jpanelBotones = new JPanel();
 			GroupLayout gl_jpanelBotones = new GroupLayout(jpanelBotones);
 			gl_jpanelBotones.setHorizontalGroup(
-				gl_jpanelBotones.createParallelGroup(Alignment.LEADING)
-					.addGroup(Alignment.TRAILING, gl_jpanelBotones.createSequentialGroup()
-						.addContainerGap(240, Short.MAX_VALUE)
+				gl_jpanelBotones.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_jpanelBotones.createSequentialGroup()
+						.addContainerGap(270, Short.MAX_VALUE)
 						.addComponent(getBtnNewButton_1())
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(getBtnNewButton()))
+						.addComponent(getBtnNewButton())
+						.addContainerGap())
 			);
 			gl_jpanelBotones.setVerticalGroup(
 				gl_jpanelBotones.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_jpanelBotones.createSequentialGroup()
-						.addGap(0, 0, Short.MAX_VALUE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(gl_jpanelBotones.createParallelGroup(Alignment.BASELINE)
 							.addComponent(getBtnNewButton())
-							.addComponent(getBtnNewButton_1()))
-						.addContainerGap())
+							.addComponent(getBtnNewButton_1())))
 			);
 			jpanelBotones.setLayout(gl_jpanelBotones);
 		}
@@ -129,7 +138,15 @@ public class VentanaConEstado {
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("Botón 2");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
 		}
 		return btnNewButton_1;
+	}
+	
+	public void mostrarEstado(String texto) {
+		
 	}
 }
