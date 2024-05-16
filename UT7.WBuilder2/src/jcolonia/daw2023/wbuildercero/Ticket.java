@@ -13,15 +13,21 @@ public class Ticket {
 		return título;
 	}
 	
-	public void avanzarTurno() {
+	public void avanzarTurno() throws TicketException{
+		if(turno == número) {
+			throw new TicketException("Ya no hay más tickets sacados");
+		}
+		
 		if(turno == 99) {
 			turno = 0;
 		}
 		turno = turno+1;
 	}
 	
-	public void tirarTicket() {
-		
+	public void tirarTicket() throws TicketException{
+		if(número == turno + 5) {
+			throw new TicketException("Ya hay 5 tickets en cola");
+		}
 		número = número +1;
 	}
 	

@@ -3,6 +3,7 @@ package jcolonia.daw2023.wbuildercero;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
@@ -193,9 +194,13 @@ public class UT7Ticket extends JFrame {
 			btnAvanzar.setBackground(new Color(240, 240, 240));
 			btnAvanzar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					try {
 					ticketPescadería.avanzarTurno();
 					String texto = String.format("%d", ticketPescadería.getTurno());
 					getJtextoTurno().setText(texto);
+					}catch(TicketException ex) {
+						infoBox(ex.getMessage(), "TITLE BAR MESSAGE");
+					}
 				}
 			});
 			btnAvanzar.setMnemonic(KeyEvent.VK_ADD);
@@ -207,14 +212,27 @@ public class UT7Ticket extends JFrame {
 			btnTicket = new JButton("Nuevo");
 			btnTicket.setBackground(new Color(240, 240, 240));
 			btnTicket.setMnemonic(KeyEvent.VK_N);
+			
 			btnTicket.addActionListener(new ActionListener() {
+				
 				public void actionPerformed(ActionEvent e) {
-					ticketPescadería.tirarTicket();
-					String texto = String.format("%d", ticketPescadería.getTicket());
-					getJtextoTicket().setText(texto);
+					try {
+						ticketPescadería.tirarTicket();
+						String texto = String.format("%d", ticketPescadería.getTicket());
+						getJtextoTicket().setText(texto);
+					}catch(TicketException ex) {
+						infoBox(ex.getMessage(), "TITLE BAR MESSAGE");
 				}
+				}
+				
 			});
+	
 		}
 		return btnTicket;
 	}
+	
+	public static void infoBox(String infoMessage, String titleBar)
+    {
+        JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+    }
 }
