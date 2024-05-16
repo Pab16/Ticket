@@ -199,7 +199,7 @@ public class UT7Ticket extends JFrame {
 					String texto = String.format("%d", ticketPescadería.getTurno());
 					getJtextoTurno().setText(texto);
 					}catch(TicketException ex) {
-						infoBox(ex.getMessage(), "TITLE BAR MESSAGE");
+						infoBox(ex.getMessage(), "ATENCION");
 					}
 				}
 			});
@@ -221,7 +221,7 @@ public class UT7Ticket extends JFrame {
 						String texto = String.format("%d", ticketPescadería.getTicket());
 						getJtextoTicket().setText(texto);
 					}catch(TicketException ex) {
-						infoBox(ex.getMessage(), "TITLE BAR MESSAGE");
+						infoBox(ex.getMessage(), "ATENCION");
 				}
 				}
 				
@@ -233,6 +233,6 @@ public class UT7Ticket extends JFrame {
 	
 	public static void infoBox(String infoMessage, String titleBar)
     {
-        JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
 }
