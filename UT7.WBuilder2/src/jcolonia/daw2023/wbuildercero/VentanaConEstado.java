@@ -99,7 +99,7 @@ public class VentanaConEstado {
 			opcionMenuHola = new JMenuItem("Bienvenida");
 			opcionMenuHola.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					 JOptionPane.showMessageDialog(null, información, "Bienvenida", JOptionPane.INFORMATION_MESSAGE);
+					 JOptionPane.showMessageDialog(getJpanelExterior(), información, "Bienvenida", JOptionPane.INFORMATION_MESSAGE);
 				}
 			});
 		}
