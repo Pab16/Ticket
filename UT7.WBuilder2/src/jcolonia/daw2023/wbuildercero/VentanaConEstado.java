@@ -42,6 +42,7 @@ public class VentanaConEstado {
 	private String información;
 	private JMenu menuOpciones;
 	private JMenuItem mntmNewMenuItem;
+	private UT7Ticket ventanaTicket;
 
 	/**
 	 * Launch the application.
@@ -63,6 +64,10 @@ public class VentanaConEstado {
 	 * Create the application.
 	 */
 	public VentanaConEstado() {
+		Ticket ticket;
+		ticket = new Ticket("Pescadería");
+		ventanaTicket = new UT7Ticket(ticket);
+		ventanaTicket.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);;
 		initialize();
 		información = String.format("Programa de Prueba \nVersión: 1.0\n©2024");
 	}
@@ -168,10 +173,10 @@ public class VentanaConEstado {
 	}
 	private JMenuItem getMntmNewMenuItem() {
 		if (mntmNewMenuItem == null) {
-			mntmNewMenuItem = new JMenuItem("Color de fondo");
+			mntmNewMenuItem = new JMenuItem("Ticket Pescadería");
 			mntmNewMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					jpanelExterior.setBackground(Color.cyan);
+					ventanaTicket.setVisible(true);
 				}
 			});
 		}
