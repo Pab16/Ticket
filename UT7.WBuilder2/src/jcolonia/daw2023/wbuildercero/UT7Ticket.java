@@ -161,7 +161,7 @@ public class UT7Ticket extends JFrame {
 			jtextoTurno.setEditable(false);
 			jtextoTurno.setFont(new Font("Noto Sans", Font.BOLD, 45));
 			jtextoTurno.setHorizontalAlignment(SwingConstants.CENTER);
-			jtextoTurno.setText("99");
+			jtextoTurno.setText("0");
 			jtextoTurno.setColumns(10);
 		}
 		return jtextoTurno;
@@ -172,7 +172,7 @@ public class UT7Ticket extends JFrame {
 			jtextoTicket.setEditable(false);
 			jtextoTicket.setEnabled(false);
 			jtextoTicket.setDisabledTextColor(new Color(0, 0, 0));
-			jtextoTicket.setText("99");
+			jtextoTicket.setText("0");
 			jtextoTicket.setHorizontalAlignment(SwingConstants.CENTER);
 			jtextoTicket.setFont(new Font("Noto Sans", Font.BOLD, 45));
 			jtextoTicket.setColumns(10);
@@ -199,7 +199,7 @@ public class UT7Ticket extends JFrame {
 					String texto = String.format("%d", ticketPescadería.getTurno());
 					getJtextoTurno().setText(texto);
 					}catch(TicketException ex) {
-						infoBox(ex.getMessage(), "ATENCION");
+						JOptionPane.showMessageDialog(getJpanelPrincipal(), ex.getMessage(), "ATENCIÓN", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 			});
@@ -221,7 +221,7 @@ public class UT7Ticket extends JFrame {
 						String texto = String.format("%d", ticketPescadería.getTicket());
 						getJtextoTicket().setText(texto);
 					}catch(TicketException ex) {
-						infoBox(ex.getMessage(), "ATENCION");
+						JOptionPane.showMessageDialog(getJpanelPrincipal(), ex.getMessage(), "ATENCIÓN", JOptionPane.INFORMATION_MESSAGE);
 				}
 				}
 				
@@ -230,9 +230,4 @@ public class UT7Ticket extends JFrame {
 		}
 		return btnTicket;
 	}
-	
-	public static void infoBox(String infoMessage, String titleBar)
-    {
-        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
-    }
 }

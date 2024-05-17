@@ -25,8 +25,11 @@ public class Ticket {
 	}
 	
 	public void tirarTicket() throws TicketException{
-		if(número == turno + 5) {
-			throw new TicketException("Ya hay 5 tickets en cola");
+		if(número >= turno + 10 || número<=turno-5) {
+			throw new TicketException("Ya hay demasiados tickets en cola");
+		}
+		if(número == 99) {
+			número = 0;
 		}
 		número = número +1;
 	}
