@@ -25,6 +25,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class UT7Ticket extends JFrame {
 
@@ -37,12 +41,13 @@ public class UT7Ticket extends JFrame {
 	private JPanel jpanelInfo;
 	private JPanel jpanelNombres;
 	private JTextField txtTicket;
-	private JTextField txtTickets;
 	private JTextField jtextoTurno;
-	private JTextField jtextoTicket;
 	private JPanel jpanelAccion;
 	private JButton btnAvanzar;
 	private JButton btnTicket;
+	private JPanel panel;
+	private JTextField jtextoTicket;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -71,7 +76,7 @@ public class UT7Ticket extends JFrame {
 		ticketPescadería.restablecer();
 		setTitle("UT7: Ejemplo eventos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 499, 358);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -86,6 +91,7 @@ public class UT7Ticket extends JFrame {
 			jpanelExterior.setBorder(new EmptyBorder(10, 10, 10, 10));
 			jpanelExterior.setLayout(new BorderLayout(0, 10));
 			jpanelExterior.add(getJpanelBorde(), BorderLayout.CENTER);
+			jpanelExterior.add(getPanel_2(), BorderLayout.SOUTH);
 		}
 		return jpanelExterior;
 	}
@@ -102,10 +108,28 @@ public class UT7Ticket extends JFrame {
 		if (jpanelPrincipal == null) {
 			jpanelPrincipal = new JPanel();
 			jpanelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
-			jpanelPrincipal.setLayout(new BorderLayout(0, 10));
-			jpanelPrincipal.add(getJpanelInfo(), BorderLayout.CENTER);
-			jpanelPrincipal.add(getJpanelNombres(), BorderLayout.NORTH);
-			jpanelPrincipal.add(getPanel_2(), BorderLayout.SOUTH);
+			GroupLayout gl_jpanelPrincipal = new GroupLayout(jpanelPrincipal);
+			gl_jpanelPrincipal.setHorizontalGroup(
+				gl_jpanelPrincipal.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_jpanelPrincipal.createSequentialGroup()
+						.addGap(0, 0, Short.MAX_VALUE)
+						.addGroup(gl_jpanelPrincipal.createParallelGroup(Alignment.LEADING)
+							.addComponent(getJpanelNombres(), GroupLayout.PREFERRED_SIZE, 446, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getJpanelInfo(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getPanel(), GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
+						.addGap(43))
+			);
+			gl_jpanelPrincipal.setVerticalGroup(
+				gl_jpanelPrincipal.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_jpanelPrincipal.createSequentialGroup()
+						.addComponent(getJpanelNombres(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGap(10)
+						.addComponent(getJpanelInfo(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGap(60)
+						.addComponent(getPanel(), GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap())
+			);
+			jpanelPrincipal.setLayout(gl_jpanelPrincipal);
 		}
 		return jpanelPrincipal;
 	}
@@ -114,7 +138,6 @@ public class UT7Ticket extends JFrame {
 			jpanelInfo = new JPanel();
 			jpanelInfo.setLayout(new GridLayout(1, 2, 10, 0));
 			jpanelInfo.add(getJtextoTurno());
-			jpanelInfo.add(getJtextoTicket());
 		}
 		return jpanelInfo;
 	}
@@ -123,7 +146,6 @@ public class UT7Ticket extends JFrame {
 			jpanelNombres = new JPanel();
 			jpanelNombres.setLayout(new GridLayout(1, 0, 10, 0));
 			jpanelNombres.add(getTxtTicket());
-			jpanelNombres.add(getTxtTickets());
 		}
 		return jpanelNombres;
 	}
@@ -140,19 +162,6 @@ public class UT7Ticket extends JFrame {
 		}
 		return txtTicket;
 	}
-	private JTextField getTxtTickets() {
-		if (txtTickets == null) {
-			txtTickets = new JTextField();
-			txtTickets.setEnabled(false);
-			txtTickets.setEditable(false);
-			txtTickets.setDisabledTextColor(new Color(0, 0, 0));
-			txtTickets.setBorder(null);
-			txtTickets.setHorizontalAlignment(SwingConstants.CENTER);
-			txtTickets.setText("TICKETS");
-			txtTickets.setColumns(10);
-		}
-		return txtTickets;
-	}
 	private JTextField getJtextoTurno() {
 		if (jtextoTurno == null) {
 			jtextoTurno = new JTextField();
@@ -165,19 +174,6 @@ public class UT7Ticket extends JFrame {
 			jtextoTurno.setColumns(10);
 		}
 		return jtextoTurno;
-	}
-	private JTextField getJtextoTicket() {
-		if (jtextoTicket == null) {
-			jtextoTicket = new JTextField();
-			jtextoTicket.setEditable(false);
-			jtextoTicket.setEnabled(false);
-			jtextoTicket.setDisabledTextColor(new Color(0, 0, 0));
-			jtextoTicket.setText("0");
-			jtextoTicket.setHorizontalAlignment(SwingConstants.CENTER);
-			jtextoTicket.setFont(new Font("Noto Sans", Font.BOLD, 45));
-			jtextoTicket.setColumns(10);
-		}
-		return jtextoTicket;
 	}
 	private JPanel getPanel_2() {
 		if (jpanelAccion == null) {
@@ -229,5 +225,33 @@ public class UT7Ticket extends JFrame {
 	
 		}
 		return btnTicket;
+	}
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setLayout(new GridLayout(0, 2, 0, 0));
+			panel.add(getLblNewLabel());
+			panel.add(getJtextoTicket());
+		}
+		return panel;
+	}
+	private JTextField getJtextoTicket() {
+		if (jtextoTicket == null) {
+			jtextoTicket = new JTextField();
+			jtextoTicket.setText("0");
+			jtextoTicket.setHorizontalAlignment(SwingConstants.CENTER);
+			jtextoTicket.setFont(new Font("Noto Sans", Font.BOLD, 10));
+			jtextoTicket.setEnabled(false);
+			jtextoTicket.setEditable(false);
+			jtextoTicket.setDisabledTextColor(Color.BLACK);
+			jtextoTicket.setColumns(10);
+		}
+		return jtextoTicket;
+	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("Tickets");
+		}
+		return lblNewLabel;
 	}
 }
