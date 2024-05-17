@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
@@ -25,6 +27,7 @@ import javax.swing.JList;
 import javax.swing.JSpinner;
 import javax.swing.JEditorPane;
 import javax.swing.JPasswordField;
+import java.awt.Color;
 
 public class VentanaConEstado {
 
@@ -36,6 +39,9 @@ public class VentanaConEstado {
 	private JPanel jpanelBotones;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
+	private String información;
+	private JMenu menuOpciones;
+	private JMenuItem mntmNewMenuItem;
 
 	/**
 	 * Launch the application.
@@ -58,6 +64,7 @@ public class VentanaConEstado {
 	 */
 	public VentanaConEstado() {
 		initialize();
+		información = String.format("Programa de Prueba \nVersión: 1.0\n©2024");
 	}
 
 	/**
@@ -65,6 +72,7 @@ public class VentanaConEstado {
 	 */
 	private void initialize() {
 		marcoPrincipal = new JFrame();
+		marcoPrincipal.getContentPane().setBackground(Color.YELLOW);
 		marcoPrincipal.setBounds(100, 100, 450, 300);
 		marcoPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		marcoPrincipal.setJMenuBar(getBarraDeMenu());
@@ -75,6 +83,7 @@ public class VentanaConEstado {
 		if (barraDeMenu == null) {
 			barraDeMenu = new JMenuBar();
 			barraDeMenu.add(getMenuAyuda());
+			barraDeMenu.add(getMenuOpciones());
 		}
 		return barraDeMenu;
 	}
@@ -90,6 +99,7 @@ public class VentanaConEstado {
 			opcionMenuHola = new JMenuItem("Bienvenida");
 			opcionMenuHola.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					 JOptionPane.showMessageDialog(null, información, "Bienvenida", JOptionPane.INFORMATION_MESSAGE);
 				}
 			});
 		}
@@ -148,5 +158,23 @@ public class VentanaConEstado {
 	
 	public void mostrarEstado(String texto) {
 		
+	}
+	private JMenu getMenuOpciones() {
+		if (menuOpciones == null) {
+			menuOpciones = new JMenu("Opciones");
+			menuOpciones.add(getMntmNewMenuItem());
+		}
+		return menuOpciones;
+	}
+	private JMenuItem getMntmNewMenuItem() {
+		if (mntmNewMenuItem == null) {
+			mntmNewMenuItem = new JMenuItem("Color de fondo");
+			mntmNewMenuItem.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					jpanelExterior.setBackground(Color.cyan);
+				}
+			});
+		}
+		return mntmNewMenuItem;
 	}
 }
