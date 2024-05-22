@@ -48,6 +48,7 @@ public class Pestañas extends JFrame {
 	private JPanel panel_3;
 	private JLabel lblTicketsSacados;
 	private Ticket ticket;
+	private JTextField textoEstado;
 
 	/**
 	 * Launch the application.
@@ -85,6 +86,7 @@ public class Pestañas extends JFrame {
 				setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(getTabbedPane(), BorderLayout.CENTER);
+		contentPane.add(getTextoEstado(), BorderLayout.SOUTH);
 	}
 	private JTabbedPane getTabbedPane() {
 		if (tabbedPane == null) {
@@ -198,7 +200,7 @@ public class Pestañas extends JFrame {
 						getTextField().setText(texto);
 						
 					} catch (TicketException ex) {
-						JOptionPane.showMessageDialog(getPanelExterior(), ex.getMessage(), "ATENCIÓN", JOptionPane.INFORMATION_MESSAGE);
+						avisoPopUp(ex.getMessage());
 					}
 				}
 			});
@@ -213,9 +215,10 @@ public class Pestañas extends JFrame {
 					try {
 						ticket.tirarTicket();
 						String texto = String.format("Tickets sacados: %d", ticket.getTicket());
+						avisoEstado("Ticket sacado!");
 						getLblTicketsSacados().setText(texto);
 					} catch (TicketException ex) {
-						JOptionPane.showMessageDialog(getPanelExterior(), ex.getMessage(), "ATENCIÓN", JOptionPane.INFORMATION_MESSAGE);
+						avisoPopUp(ex.getMessage());
 					}
 				}
 			});
@@ -237,5 +240,25 @@ public class Pestañas extends JFrame {
 			lblTicketsSacados.setHorizontalAlignment(SwingConstants.TRAILING);
 		}
 		return lblTicketsSacados;
+	}
+	private JTextField getTextoEstado() {
+		if (textoEstado == null) {
+			textoEstado = new JTextField();
+			textoEstado.setDisabledTextColor(new Color(0, 0, 0));
+			textoEstado.setHorizontalAlignment(SwingConstants.CENTER);
+			textoEstado.setEnabled(false);
+			textoEstado.setEditable(false);
+			textoEstado.setColumns(10);
+		}
+		return textoEstado;
+	}
+	
+	public void avisoEstado(String texto) {
+		getTextoEstado().setDisabledTextColor(new Color(0,0,0));
+		getTextoEstado().setText(texto);
+	}
+	
+	public void avisoPopUp(String texto) {
+		JOptionPane.showMessageDialog(getPanelExterior(), texto, "ATENCIÓN", JOptionPane.INFORMATION_MESSAGE);
 	}
 }
